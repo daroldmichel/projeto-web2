@@ -1,0 +1,38 @@
+<form action="/veiculoEdit" method="post" class="row g-3 justify-content-center">
+    <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" value="{{veiculos.id}}" >
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="tipo">Tipo</label>
+            <input type="text" class="form-control" id="tipo" placeholder="Tipo" name="tipo" value="{{veiculos.tipo}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="modelo">Modelo</label>
+            <input type="text" class="form-control" id="modelo" placeholder="Modelo" name="modelo" value="{{veiculos.tipo}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="fabricante">Fabricante</label>
+            <input type="text" class="form-control" id="fabricante" placeholder="Fabricante" name="fabricante" value="{{veiculos.fabricante}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="placa">Placa</label>
+            <input type="text" class="form-control" id="placa" placeholder="Placa" name="placa" value="{{veiculos.placa}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="cor">Cor</label>
+            <input type="text" class="form-control" id="cor" placeholder="Cor" name="cor" value="{{veiculos.cor}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+        </div>
+    </div>
+</form>

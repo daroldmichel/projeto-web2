@@ -1,0 +1,36 @@
+<table class="table table-success table-striped table-bordered">
+    <tr>
+        <td> ID </td>
+        <td> Nome</td>
+        <td> Telefone</td>
+        <td> Email</td>
+        <td> Senha</td>
+        <td> Tipo</td>
+        <td> Ramal</td>
+        <td> Sala</td>
+        <td> Cargo</td>
+        <td> RA</td>
+        <td> Curso</td>
+        <td> CPF</td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    {{#each pessoas}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{nome}}</td>
+        <td>{{telefone}}</td>
+        <td>{{email}}</td>
+        <td>{{senha}}</td>
+        <td>{{tipo}}</td>
+        <td>{{ramal}}</td>
+        <td>{{sala}}</td>
+        <td>{{cargo}}</td>
+        <td>{{ra}}</td>
+        <td>{{curso}}</td>
+        <td>{{cpf}}</td>
+        <td><a class="btn btn-primary" type="button" href="pessoaEdit/{{id}}">Editar</a></td>
+        <td><a class="btn btn-danger" type="button" href="pessoaDelete/{{id}}">Excluir</a></td>
+    </tr>
+    {{/each}}
+</table>

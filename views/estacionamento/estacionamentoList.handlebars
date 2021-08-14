@@ -1,0 +1,16 @@
+<table class="table table-success table-striped table-bordered">
+    <tr>
+        <td> ID </td>
+        <td> Descrição</td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    {{#each estacionamentos}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{descricao}}</td>
+        <td><a class="btn btn-primary" type="button" href="estacionamentoEdit/{{id}}">Editar</a></td>
+        <td><a class="btn btn-danger" type="button" href="estacionamentoDelete/{{id}}">Excluir</a></td>
+    </tr>
+    {{/each}}
+</table>
