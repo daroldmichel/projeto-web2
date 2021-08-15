@@ -2,6 +2,7 @@ const express = require('express');
 const controllerPessoa = require('../controllers/controllerPessoa');
 const controllerVeiculo = require('../controllers/controllerVeiculo');
 const controllerEstacionamento = require('../controllers/controllerEstacionamento');
+const controllerOcorrencia = require('../controllers/controllerOcorrencia');
 const controllerLivro = require('../controllers/controllerLivro');
 const controllerAPI = require('../controllers/controllerAPI');
 const route = express.Router();
@@ -43,6 +44,14 @@ route.get("/estacionamentoList",controllerEstacionamento.getList);
 route.get("/estacionamentoEdit/:id",controllerEstacionamento.getEdit);
 route.post("/estacionamentoEdit",controllerEstacionamento.postEdit);
 route.get("/estacionamentoDelete/:id",controllerEstacionamento.getDelete);
+
+//Ocorrencia - CRUD
+route.get("/ocorrenciaCreate",controllerOcorrencia.getCreate);
+route.post("/ocorrenciaCreate",controllerOcorrencia.postCreate);
+route.get("/ocorrenciaList",controllerOcorrencia.getList);
+route.get("/ocorrenciaEdit/:id",controllerOcorrencia.getEdit);
+route.post("/ocorrenciaEdit",controllerOcorrencia.postEdit);
+route.get("/ocorrenciaDelete/:id",controllerOcorrencia.getDelete);
 
 //Controller Livro
 //Livro-CRUD

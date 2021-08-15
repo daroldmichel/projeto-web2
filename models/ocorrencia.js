@@ -1,3 +1,4 @@
+const dateFormat = require('dateformat');
 
 module.exports = (sequelize, Sequelize) => {
     const Ocorrencia = sequelize.define('ocorrencia', {
@@ -11,7 +12,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         datahora: {
-            type: Sequelize.DATE, allowNull: false
+            type: Sequelize.DATE, allowNull: false,
+            get() {
+                return dateFormat(this.getDataValue('datahora'), "yyyy-mm-dd") + 'T' +  dateFormat(this.getDataValue('datahora'), "hh:MM:ss");
+            }
         }
     });
 

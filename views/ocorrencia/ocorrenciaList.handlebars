@@ -1,0 +1,22 @@
+<table class="table table-success table-striped table-bordered">
+    <tr>
+        <td> ID </td>
+        <td> Observação</td>
+        <td> Data e Hora</td>
+        <td> Estacionamento</td>
+        <td> Veiculo</td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    {{#each ocorrencias}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{observacao}}</td>
+        <td>{{datahora}}</td>
+        <td>{{estacionamento.descricao}}</td>
+        <td>{{veiculo.placa}}</td>
+        <td><a class="btn btn-primary" type="button" href="ocorrenciaEdit/{{id}}">Editar</a></td>
+        <td><a class="btn btn-danger" type="button" href="ocorrenciaDelete/{{id}}">Excluir</a></td>
+    </tr>
+    {{/each}}
+</table>

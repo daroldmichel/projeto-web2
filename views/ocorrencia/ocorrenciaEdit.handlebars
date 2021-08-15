@@ -1,0 +1,32 @@
+<form action="/ocorrenciaEdit" method="post" class="row g-3 justify-content-center">
+    <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" value="{{ocorrencias.id}}" >
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="observacao">Observação</label>
+            <input type="text" class="form-control" id="observacao" placeholder="Observação" name="observacao" value="{{ocorrencias.observacao}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="datahora">Data e Hora</label>
+            <input type="datetime-local" class="form-control" id="datahora" placeholder="Data e Hora" name="datahora" value="{{ocorrencias.datahora}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="veiculoId">Veiculo</label>
+            <input type="number" class="form-control" id="veiculoId" placeholder="Veiculo" name="veiculoId" value="{{ocorrencias.veiculoId}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="estacionamentoId">Estacionamento</label>
+            <input type="number" class="form-control" id="estacionamentoId" placeholder="Estacionamento" name="estacionamentoId" value="{{ocorrencias.estacionamentoId}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+        </div>
+    </div>
+</form>
