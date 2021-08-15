@@ -1,9 +1,5 @@
 const db = require('../config/db_sequelize');
 
-/*db.sequelize.sync({force: true}).then(() => {
-    console.log('{ force: true }');
-});*/
-
 module.exports = {
     async getLogin(req,res){
         res.render('pessoa/login',{layout: 'noMenu.handlebars'});
