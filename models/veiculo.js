@@ -3,7 +3,9 @@ module.exports = (sequelize, Sequelize) => {
     const Veiculo = sequelize.define('veiculo', {
         id: {
             type: Sequelize.INTEGER,
-        autoIncrement: true, allowNull: false, primaryKey: true
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true
         },
         tipo: {
             type: Sequelize.STRING, allowNull: false
@@ -21,5 +23,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING, allowNull: false
         }
     });
+
     return Veiculo;
 }

@@ -19,7 +19,8 @@ module.exports = {
         res.redirect('/home');
     },
     async getList(req, res) {
-        db.Veiculo.findAll().then (veiculos => {
+        db.Veiculo.findAll({ include: 'pessoa' }).then (veiculos => {
+            console.log(veiculos);
             res.render('veiculo/veiculoList', {veiculos: veiculos.map(veiculos => veiculos.toJSON())});
         });
     },
