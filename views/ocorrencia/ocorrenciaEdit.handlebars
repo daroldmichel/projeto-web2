@@ -15,13 +15,29 @@
     <div class="row-md">
         <div class="col-md-5">
             <label class="form-label" for="veiculoId">Veiculo</label>
-            <input type="number" class="form-control" id="veiculoId" placeholder="Veiculo" name="veiculoId" value="{{ocorrencias.veiculoId}}">
+            <select name="veiculoId"  id="veiculoId" class="form-select" aria-label="Veiculo">
+                {{#each veiculos}}
+                    {{#if "id == ocorrencias.veiculoId"}}
+                        <option selected="selected" value={{id}}>{{placa}}</option>
+                    {{else}}
+                        <option value={{id}}>{{placa}}</option>
+                    {{/if}}
+                {{/each}}
+            </select>
         </div>
     </div>
     <div class="row-md">
         <div class="col-md-5">
             <label class="form-label" for="estacionamentoId">Estacionamento</label>
-            <input type="number" class="form-control" id="estacionamentoId" placeholder="Estacionamento" name="estacionamentoId" value="{{ocorrencias.estacionamentoId}}">
+            <select name="estacionamentoId"  id="estacionamentoId" class="form-select" aria-label="Estacionamento">
+                {{#each estacionamentos}}
+                    {{#if "id == ocorrencias.estacionamentoId"}}
+                        <option selected="selected" value={{id}}>{{descricao}}</option>
+                    {{else}}
+                        <option value={{id}}>{{descricao}}</option>
+                    {{/if}}
+                {{/each}}
+            </select>
         </div>
     </div>
     <div class="row-md">

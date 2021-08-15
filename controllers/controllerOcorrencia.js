@@ -2,7 +2,15 @@ const db = require('../config/db_sequelize');
 
 module.exports = {
         async getCreate(req, res) {
-        res.render('ocorrencia/ocorrenciaCreate');
+            var estacionamento;
+            var veiculo;
+            await db.Estacionamento.findAll().then (estacionamentos => {
+               estacionamento = (estacionamentos.map(estacionamentos => estacionamentos.toJSON()));
+            });
+            await db.Veiculo.findAll().then (veiculos => {
+                veiculo = veiculos.map(veiculos => veiculos.toJSON());
+            });
+            res.render('ocorrencia/ocorrenciaCreate', {estacionamentos: estacionamento, veiculos: veiculo});
     },
     async postCreate(req, res) {
         console.log(req.body.datahora);
@@ -21,8 +29,16 @@ module.exports = {
         });
     },
     async getEdit(req, res) {
+        var estacionamento;
+        var veiculo;
+        await db.Estacionamento.findAll().then (estacionamentos => {
+            estacionamento = (estacionamentos.map(estacionamentos => estacionamentos.toJSON()));
+        });
+        await db.Veiculo.findAll().then (veiculos => {
+            veiculo = veiculos.map(veiculos => veiculos.toJSON());
+        });
         db.Ocorrencia.findOne({where: {id: req.params.id}}).then((ocorrencias)=>{
-            res.render('ocorrencia/ocorrenciaEdit', {ocorrencias:ocorrencias.toJSON()});
+            res.render('ocorrencia/ocorrenciaEdit', {ocorrencias:ocorrencias.toJSON(), veiculos: veiculo, estacionamentos: estacionamento});
         });
     },
     async postEdit(req, res) {
