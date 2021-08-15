@@ -1,9 +1,5 @@
 const db = require('../config/db_sequelize');
 
-/*db.sequelize.sync({force: true}).then(() => {
-    console.log('{ force: true }');
-});*/
-
 module.exports = {
         async getCreate(req, res) {
         res.render('estacionamento/estacionamentoCreate');
