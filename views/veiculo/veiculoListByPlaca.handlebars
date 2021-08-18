@@ -1,0 +1,103 @@
+<form action="/veiculoEdit" method="post" class="row g-3 justify-content-center">
+    <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" value="{{veiculos.id}}">
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="tipo">Tipo</label>
+            <input type="text" class="form-control" id="tipo" placeholder="Tipo" name="tipo" value="{{veiculos.tipo}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="modelo">Modelo</label>
+            <input type="text" class="form-control" id="modelo" placeholder="Modelo" name="modelo" value="{{veiculos.modelo}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="fabricante">Fabricante</label>
+            <input type="text" class="form-control" id="fabricante" placeholder="Fabricante" name="fabricante" value="{{veiculos.fabricante}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="placa">Placa</label>
+            <input type="text" class="form-control" id="placa" placeholder="Placa" name="placa" value="{{veiculos.placa}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="cor">Cor</label>
+            <input type="text" class="form-control" id="cor" placeholder="Cor" name="cor" value="{{veiculos.cor}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <p class="h3">Pessoa</p>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" value="{{veiculos.pessoa.nome}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="nome">Telefone</label>
+            <input type="number" class="form-control" id="telefone" placeholder="Telefone" name="telefone" value="{{veiculos.pessoa.telefone}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="email">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="{{veiculos.pessoa.email}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="tipo">Tipo</label>
+            <select name="tipo"  id="tipo" class="form-select" aria-label="Responsável Estacionamento" value="{{veiculos.pessoa.tipo}}" disabled>
+                <option value=1>Responsável Estacionamento</option>
+                <option value=2>Funcionário DESEG</option>
+                <option value=3>Aluno</option>
+                <option value=4>Visitante</option>
+            </select>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="ramal">Ramal</label>
+            <input type="number" class="form-control" id="ramal" placeholder="Ramal" name="ramal" value="{{veiculos.pessoa.ramal}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="sala">Sala</label>
+            <input type="text" class="form-control" id="sala" placeholder="Sala" name="sala" value="{{veiculos.pessoa.sala}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="cargo">Cargo</label>
+            <input type="text" class="form-control" id="cargo" placeholder="Cargo" name="cargo" value="{{veiculos.pessoa.cargo}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="ra">RA</label>
+            <input type="number" class="form-control" id="ra" placeholder="RA" name="ra" value="{{veiculos.pessoa.ra}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="curso">Curso</label>
+            <input type="text" class="form-control" id="curso" placeholder="Curso" name="curso" value="{{veiculos.pessoa.curso}}" disabled>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="cpf">CPF</label>
+            <input type="number" class="form-control" id="cpf" placeholder="CPF" name="cpf" value="{{veiculos.pessoa.cpf}}" disabled>
+        </div>
+    </div>
+</form>

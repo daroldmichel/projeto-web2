@@ -2,14 +2,18 @@ const db = require('../config/db_sequelize');
 
 module.exports = {
     async getLogin(req,res){
-        res.render('pessoa/login',{layout: 'noMenu.handlebars'});
+        if (req.session.email){
+            res.redirect('/home');
+        }else{
+            res.render('pessoa/login',{layout: 'noMenu.handlebars'});
+        }
     },
     async getLogout(req,res){
         req.session.destroy();
         res.redirect('/');
     },
     async postLogin(req,res){
-        db.Pessoa.findAll({ where: {email: req.body.email, senha: req.body.senha}}
+        db.Pessoa.findAll({ where: {email: req.body.email, senha: req.body.senha, tipo : [1, 2]}}
         ). then (pessoas => {
             if (pessoas.length > 0){
                 req.session.email = req.body.email;
@@ -74,9 +78,13 @@ module.exports = {
         });
     },
     async getEdit(req, res) {
-        db.Pessoa.findOne({where: {id: req.params.id}}).then((pessoas)=>{
-            res.render('pessoa/pessoaEdit', {pessoas:pessoas.toJSON()});
-        });
+        if (parseInt(req.params.id) > 0 ){
+            db.Pessoa.findOne({where: {id: req.params.id}}).then((pessoas)=>{
+                res.render('pessoa/pessoaEdit', {pessoas:pessoas.toJSON()});
+            });
+        }else{
+            res.redirect( "/" + req.params.id);
+        }
     },
     async postEdit(req, res) {
         db.Pessoa.update(req.body, {where: {id: req.body.id}}).then((pessoas)=>{

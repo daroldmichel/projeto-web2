@@ -2,7 +2,11 @@ const db = require('../config/db_sequelize');
 
 module.exports = {
         async getCreate(req, res) {
-        res.render('veiculo/veiculoCreate');
+            var pessoa;
+            await db.Pessoa.findAll().then (pessoas => {
+                pessoa = pessoas.map(pessoas => pessoas.toJSON());
+            });
+        res.render('veiculo/veiculoCreate', {pessoas:pessoa});
     },
     async postCreate(req, res) {
         db.Veiculo.create({
@@ -21,9 +25,18 @@ module.exports = {
         });
     },
     async getEdit(req, res) {
-        db.Veiculo.findOne({where: {id: req.params.id}}).then((veiculos)=>{
-            res.render('veiculo/veiculoEdit', {veiculos:veiculos.toJSON()});
-        });
+        var pessoa;
+        if (parseInt(req.params.id) > 0 ){
+            await db.Pessoa.findAll().then (pessoas => {
+                pessoa = pessoas.map(pessoas => pessoas.toJSON());
+            });
+            db.Veiculo.findOne({where: {id: req.params.id}}).then((veiculos)=>{
+                res.render('veiculo/veiculoEdit', {veiculos:veiculos.toJSON(), pessoas: pessoa});
+            });
+        }else{
+            res.redirect( "/" + req.params.id);
+        }
+
     },
     async postEdit(req, res) {
         db.Veiculo.update(req.body, {where: {id: req.body.id}}).then((veiculos)=>{
@@ -35,5 +48,10 @@ module.exports = {
             console.log('Veiculo deletado: ' + veiculos)
             res.redirect('/veiculoList');
         });
-    }
+    },
+    async getByPlaca(req, res) {
+        db.Veiculo.findOne({ where: {placa: req.body.placa}, include: 'pessoa' }).then (veiculos => {
+            res.render('veiculo/veiculoListByPlaca', {veiculos:veiculos.toJSON()});
+        });
+    },
 }

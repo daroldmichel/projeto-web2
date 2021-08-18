@@ -17,7 +17,13 @@ module.exports = {
             next();
         else if ((req.url == '/login') && (req.method == 'POST'))
             next();
-        else
+        else if(req.url.split('/')[1] == 'api'){
+            next()
+        }else
             res.redirect('/');
+    },
+    sessionHandlebars(req, res, next) {
+        res.locals.session = req.session;
+        next();
     }
 };

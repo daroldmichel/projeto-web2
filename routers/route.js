@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const controllerPessoa = require('../controllers/controllerPessoa');
 const controllerVeiculo = require('../controllers/controllerVeiculo');
 const controllerEstacionamento = require('../controllers/controllerEstacionamento');
@@ -9,6 +10,16 @@ const route = express.Router();
 
 module.exports = route;
 
+function verifyJWT(req, res, next){
+    const token = req.headers['x-access-token'];
+    if (!token) return res.status(401).json({ auth: false, message: 'Token não informado.' });
+
+    jwt.verify(token, 'BicoDePato', function(err, decoded) {
+        if (err) return res.status(500).json({ auth: false, message: 'Falha ao autenticar Token.' });
+        next();
+    });
+}
+
 //Home
 route.get("/home",function(req,res) {
     res.render('home');
@@ -18,6 +29,7 @@ route.get("/home",function(req,res) {
 
 //Usuario - Login e Recuperação de Senha
 route.get("/",controllerPessoa.getLogin);
+route.get("/login",controllerPessoa.getLogin);
 route.post("/login",controllerPessoa.postLogin);
 route.get("/logout",controllerPessoa.getLogout);
 
@@ -36,6 +48,7 @@ route.get("/veiculoList",controllerVeiculo.getList);
 route.get("/veiculoEdit/:id",controllerVeiculo.getEdit);
 route.post("/veiculoEdit",controllerVeiculo.postEdit);
 route.get("/veiculoDelete/:id",controllerVeiculo.getDelete);
+route.post("/veiculoPlaca",controllerVeiculo.getByPlaca);
 
 //Estacionamento - CRUD
 route.get("/estacionamentoCreate",controllerEstacionamento.getCreate);
@@ -63,8 +76,6 @@ route.post("/livroEdit",controllerLivro.postEdit);
 route.get("/livroDelete/:id",controllerLivro.getDelete);
 
 //ControllerAPI
-route.get("/api/livro/:id",controllerAPI.getLivroById);
-route.get("/api/livros",controllerAPI.getLivros);
-route.post("/api/livro",controllerAPI.postLivro);
-route.put('/api/livro/:id',controllerAPI.putLivro);
-route.delete('/api/livro/:id',controllerAPI.deleteLivro);
+route.get("/api/login",controllerAPI.getLogin);
+route.get("/api/pessoa/:id", verifyJWT, controllerAPI.getPessoa);
+route.get("/api/ocorrencias/:id", verifyJWT, controllerAPI.getOcorrencia);

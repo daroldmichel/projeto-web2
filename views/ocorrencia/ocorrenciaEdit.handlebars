@@ -16,13 +16,11 @@
         <div class="col-md-5">
             <label class="form-label" for="veiculoId">Veiculo</label>
             <select name="veiculoId"  id="veiculoId" class="form-select" aria-label="Veiculo">
+            {{#select ocorrencias.veiculoId}}
                 {{#each veiculos}}
-                    {{#if "id == ocorrencias.veiculoId"}}
-                        <option selected="selected" value={{id}}>{{placa}}</option>
-                    {{else}}
-                        <option value={{id}}>{{placa}}</option>
-                    {{/if}}
+                    <option value={{id}}>{{placa}}</option>
                 {{/each}}
+            {{/select}}
             </select>
         </div>
     </div>
@@ -30,13 +28,11 @@
         <div class="col-md-5">
             <label class="form-label" for="estacionamentoId">Estacionamento</label>
             <select name="estacionamentoId"  id="estacionamentoId" class="form-select" aria-label="Estacionamento">
-                {{#each estacionamentos}}
-                    {{#if "id == ocorrencias.estacionamentoId"}}
-                        <option selected="selected" value={{id}}>{{descricao}}</option>
-                    {{else}}
+                {{#select ocorrencias.estacionamentoId}}
+                    {{#each estacionamentos}}
                         <option value={{id}}>{{descricao}}</option>
-                    {{/if}}
-                {{/each}}
+                    {{/each}}
+                {{/select}}
             </select>
         </div>
     </div>

@@ -1,28 +1,83 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sistema de Controle de Livros</title>
+        <title>Sistema de Gerenciamento do Estacionamento UTFPR - DV</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body>
         <center>
             <img src="../imagens/logo.png" class="rounded" alt="Livro">
-            <h1> Sistema de Controle de Livros </h1>
-            <nav class="navbar bg-secondary justify-content-center">
-                <a class="btn btn-sm btn-secondary" type="button" href="pessoaCreate">Cadastrar Pessoa</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="pessoaList">Listar Pessoas</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="veiculoCreate">Cadastrar Veiculo</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="veiculoList">Listar Veiculos</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="estacionamentoCreate">Cadastrar Estacionamento</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="estacionamentoList">Listar Estacionamentos</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="ocorrenciaCreate">Cadastrar Ocorrência</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="ocorrenciaList">Listar Ocorrências</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="livroCreate">Cadastrar Livro</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="livroList">Listar Livro</a>
-                <a class="btn btn-sm btn-secondary" type="button" href="logout">Logout</a>
+            <h1> Sistema de Gerenciamento do Estacionamento UTFPR - DV </h1>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav me-auto mx-auto navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="home">Início</a>
+                            </li>
+                            {{#compare session.tipo "==" 2}}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Pessoas
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                        <li><a class="dropdown-item" href="pessoaCreate">Cadastrar</a></li>
+                                        <li><a class="dropdown-item" href="pessoaList">Listar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Veiculos
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                        <li><a class="dropdown-item" href="veiculoCreate">Cadastrar</a></li>
+                                        <li><a class="dropdown-item" href="veiculoList">Listar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Estacionamentos
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                        <li><a class="dropdown-item" href="estacionamentoCreate">Cadastrar</a></li>
+                                        <li><a class="dropdown-item" href="EstacionamentoList">Listar</a></li>
+                                    </ul>
+                                </li>
+                            {{/compare}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Ocorrencias
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="ocorrenciaCreate">Cadastrar</a></li>
+                                    <li><a class="dropdown-item" href="ocorrenciaList">Listar</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <form class="" action="veiculoPlaca" method="post">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input class="form-control-sm" type="search" placeholder="Digite a Placa" id="placa" name="placa">
+                                            </div>
+                                            <div class="col">
+                                                <button class="btn btn-sm btn-outline-success" type="submit">Verificar Veiculo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </nav>
             {{{body}}}
         </center>
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

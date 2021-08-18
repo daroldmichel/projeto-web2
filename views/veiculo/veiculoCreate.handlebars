@@ -31,6 +31,16 @@
     </div>
     <div class="row-md">
         <div class="col-md-5">
+            <label class="form-label" for="pessoaId">Pessoa</label>
+            <select name="pessoaId"  id="pessoaId" class="form-select">
+                {{#each pessoas}}
+                    <option value={{id}}>{{nome}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
             <button type="submit" class="btn btn-success">Cadastrar</button>
         </div>
     </div>

@@ -9,7 +9,7 @@
     <div class="row-md">
         <div class="col-md-5">
             <label class="form-label" for="modelo">Modelo</label>
-            <input type="text" class="form-control" id="modelo" placeholder="Modelo" name="modelo" value="{{veiculos.tipo}}">
+            <input type="text" class="form-control" id="modelo" placeholder="Modelo" name="modelo" value="{{veiculos.modelo}}">
         </div>
     </div>
     <div class="row-md">
@@ -28,6 +28,18 @@
         <div class="col-md-5">
             <label class="form-label" for="cor">Cor</label>
             <input type="text" class="form-control" id="cor" placeholder="Cor" name="cor" value="{{veiculos.cor}}">
+        </div>
+    </div>
+    <div class="row-md">
+        <div class="col-md-5">
+            <label class="form-label" for="pessoaId">Pessoa</label>
+            <select name="pessoaId"  id="pessoaId" class="form-select">
+                {{#select veiculos.pessoaId}}
+                    {{#each pessoas}}
+                        <option value={{id}}>{{nome}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
         </div>
     </div>
     <div class="row-md">

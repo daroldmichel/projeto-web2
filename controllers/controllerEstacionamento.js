@@ -16,9 +16,13 @@ module.exports = {
         });
     },
     async getEdit(req, res) {
-        db.Estacionamento.findOne({where: {id: req.params.id}}).then((estacionamentos)=>{
-            res.render('estacionamento/estacionamentoEdit', {estacionamentos:estacionamentos.toJSON()});
-        });
+        if (parseInt(req.params.id) > 0 ){
+            db.Estacionamento.findOne({where: {id: req.params.id}}).then((estacionamentos)=>{
+                res.render('estacionamento/estacionamentoEdit', {estacionamentos:estacionamentos.toJSON()});
+            });
+        }else{
+            res.redirect( "/" + req.params.id);
+        }
     },
     async postEdit(req, res) {
         db.Estacionamento.update(req.body, {where: {id: req.body.id}}).then((estacionamentos)=>{

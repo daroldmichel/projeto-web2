@@ -31,15 +31,19 @@ module.exports = {
     async getEdit(req, res) {
         var estacionamento;
         var veiculo;
-        await db.Estacionamento.findAll().then (estacionamentos => {
-            estacionamento = (estacionamentos.map(estacionamentos => estacionamentos.toJSON()));
-        });
-        await db.Veiculo.findAll().then (veiculos => {
-            veiculo = veiculos.map(veiculos => veiculos.toJSON());
-        });
-        db.Ocorrencia.findOne({where: {id: req.params.id}}).then((ocorrencias)=>{
-            res.render('ocorrencia/ocorrenciaEdit', {ocorrencias:ocorrencias.toJSON(), veiculos: veiculo, estacionamentos: estacionamento});
-        });
+        if (parseInt(req.params.id) > 0 ){
+            await db.Estacionamento.findAll().then (estacionamentos => {
+                estacionamento = (estacionamentos.map(estacionamentos => estacionamentos.toJSON()));
+            });
+            await db.Veiculo.findAll().then (veiculos => {
+                veiculo = veiculos.map(veiculos => veiculos.toJSON());
+            });
+            db.Ocorrencia.findOne({where: {id: req.params.id}}).then((ocorrencias)=>{
+                res.render('ocorrencia/ocorrenciaEdit', {ocorrencias:ocorrencias.toJSON(), veiculos: veiculo, estacionamentos: estacionamento});
+            });
+        }else{
+            res.redirect( "/" + req.params.id);
+        }
     },
     async postEdit(req, res) {
         db.Ocorrencia.update(req.body, {where: {id: req.body.id}}).then((ocorrencias)=>{
