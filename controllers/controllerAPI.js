@@ -22,48 +22,29 @@ module.exports = {
 
     },
     async getPessoa(req, res) {
-        const id = req.params;
-        if(!req.params){
-            res.status(404).json({message: 'Por gentileza envie o id da pessoa pelo parametro da request!'});
-        }
-        if(!req.params.id){
-            res.status(404).json({message: 'Por gentileza envie o id da pessoa pelo parametro da request!'});
-        }
-        if(parseInt(req.params.id) > 0 ){
-            db.Pessoa.findOne({where: {id: req.params.id}}).then((pessoas)=>{
-                if(pessoas){
-                    res.status(200).json(pessoas.toJSON());
-                }
-            });
-        }else{
-            res.status(404).json({message: 'Por gentileza envie o id(do tipo INTEIRO) da pessoa pelo parametro da request!'});
-        }
-
+        db.Pessoa.findOne({where: {id: req.userId}}).then((pessoas)=>{
+            if(pessoas){
+                res.status(200).json(pessoas.toJSON());
+            }
+        });
+    },
+    async postPessoa(req, res) {
+        db.Pessoa.update(req.body, {where: {id: req.userId}}).then((pessoas)=>{
+            res.status(200).json(req.body);
+        });
     },
     async getOcorrencia(req, res) {
-        const id = req.params;
-        if(!req.params){
-            res.status(404).json({message: 'Por gentileza envie o id da pessoa pelo parametro da request!'});
-        }
-        if(!req.params.id){
-            res.status(404).json({message: 'Por gentileza envie o id da pessoa pelo parametro da request!'});
-        }
-        if(parseInt(req.params.id) > 0 ){
-            var veics = [];
-            await db.Veiculo.findAll({where: {pessoaId: req.params.id}}).then (veiculos => {
-                veiculos.map(veiculos => veics.push(veiculos.toJSON()));
+        var veics = [];
+        await db.Veiculo.findAll({where: {pessoaId: req.userId}}).then (veiculos => {
+            veiculos.map(veiculos => veics.push(veiculos.toJSON()));
+        });
+        var ocorrencs =  [];
+        console.log(veics)
+        for (const veiculo of veics) {
+            await db.Ocorrencia.findAll({where: {veiculoId: veiculo.id}}).then (ocorrencias => {
+                ocorrencias.map(ocorrencias => ocorrencs.push(ocorrencias.toJSON()));
             });
-            var ocorrencs =  [];
-            console.log(veics)
-            for (const veiculo of veics) {
-                await db.Ocorrencia.findAll({where: {veiculoId: veiculo.id}}).then (ocorrencias => {
-                    ocorrencias.map(ocorrencias => ocorrencs.push(ocorrencias.toJSON()));
-                });
-            }
-            res.status(200).json(ocorrencs);
-        }else{
-            res.status(404).json({message: 'Por gentileza envie o id(do tipo INTEIRO) da pessoa pelo parametro da request!'});
         }
-
-    }
+        res.status(200).json(ocorrencs);
+       }
 }

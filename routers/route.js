@@ -4,7 +4,6 @@ const controllerPessoa = require('../controllers/controllerPessoa');
 const controllerVeiculo = require('../controllers/controllerVeiculo');
 const controllerEstacionamento = require('../controllers/controllerEstacionamento');
 const controllerOcorrencia = require('../controllers/controllerOcorrencia');
-const controllerLivro = require('../controllers/controllerLivro');
 const controllerAPI = require('../controllers/controllerAPI');
 const route = express.Router();
 
@@ -16,6 +15,7 @@ function verifyJWT(req, res, next){
 
     jwt.verify(token, 'BicoDePato', function(err, decoded) {
         if (err) return res.status(500).json({ auth: false, message: 'Falha ao autenticar Token.' });
+        req.userId = decoded.id;
         next();
     });
 }
@@ -66,16 +66,8 @@ route.get("/ocorrenciaEdit/:id",controllerOcorrencia.getEdit);
 route.post("/ocorrenciaEdit",controllerOcorrencia.postEdit);
 route.get("/ocorrenciaDelete/:id",controllerOcorrencia.getDelete);
 
-//Controller Livro
-//Livro-CRUD
-route.get("/livroCreate",controllerLivro.getCreate);
-route.post("/livroCreate",controllerLivro.postCreate);
-route.get("/livroList",controllerLivro.getList);
-route.get("/livroEdit/:id",controllerLivro.getEdit);
-route.post("/livroEdit",controllerLivro.postEdit);
-route.get("/livroDelete/:id",controllerLivro.getDelete);
-
 //ControllerAPI
 route.get("/api/login",controllerAPI.getLogin);
-route.get("/api/pessoa/:id", verifyJWT, controllerAPI.getPessoa);
-route.get("/api/ocorrencias/:id", verifyJWT, controllerAPI.getOcorrencia);
+route.get("/api/pessoa", verifyJWT, controllerAPI.getPessoa);
+route.put("/api/pessoa", verifyJWT, controllerAPI.postPessoa);
+route.get("/api/ocorrencias", verifyJWT, controllerAPI.getOcorrencia);
