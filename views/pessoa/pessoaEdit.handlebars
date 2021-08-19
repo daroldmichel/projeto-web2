@@ -28,10 +28,12 @@
         <div class="col-md-5">
             <label class="form-label" for="tipo">Tipo</label>
             <select name="tipo"  id="tipo" class="form-select" aria-label="Responsável Estacionamento" value="{{pessoas.tipo}}">
-                <option value=1>Responsável Estacionamento</option>
-                <option value=2>Funcionário DESEG</option>
-                <option value=3>Aluno</option>
-                <option value=4>Visitante</option>
+                {{#select pessoas.tipo}}
+                    <option value=1>Responsável Estacionamento</option>
+                    <option value=2>Funcionário DESEG</option>
+                    <option value=3>Aluno</option>
+                    <option value=4>Visitante</option>
+                {{/select}}
             </select>
         </div>
     </div>
